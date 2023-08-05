@@ -1,0 +1,86 @@
+                  +--------------+
+                  |   Category   |
+                  +--------------+
+                  | id           |
+                  | category_name|
+                  +--------------+
+                       |   |          
+                       |   | hasMany
+                       |   |
+                       |   |
+                       |   | belongsTo
+                       |   |
+                       |   V
+                  +--------------+
+        +------|  Subcategory  |--------+
+        |     +--------------+        |
+        |                              |
+        |                              |
+  hasMany  |     hasMany           hasMany |  belongsTo
+        |                              |
+        |                              |
+        |                              |
+   +--------------+              +--------------+
+   |   Product    |              |    Order     |
+   +--------------+              +--------------+
+   | id           |              | id           |
+   | name         |              | order_number |
+   | image_url    |              | total_value  |
+   | description  |              | user_id      |
+   | metric       |              | paid_at      |
+   | price        |              | cancel_at    |
+   | organic      |              +--------------+
+   | stock_date   |                  |
+   | reviews      |                  |
+   | store_location|          belongsTo
+   | subCategoryId|          +----------------+
+   +--------------+          |  OrderDetail   |
+                             +----------------+
+                             | id             |
+                             | quantity       |
+                             | orderId        |
+                             | productId      |
+                             +----------------+
+                             |
+                             | belongsTo
+                             |
+                             V
+                         +-------+
+                         |  User |
+                         +-------+
+                         | id    |
+                         | first_name |
+                         | last_name  |
+                         | email      |
+                         | password   |
+                         +-------+
+                              |
+                              | hasMany
+                              |
+                              V
+                       +--------------+
+                       |  Collection  |
+                       +--------------+
+                       | id           |
+                       | collection_name |
+                       | collection_image |
+                       +--------------+
+                              |
+                              | hasMany
+                              |
+                              V
+                        +--------------+
+                        |   Product    |
+                        +--------------+
+                        | id           |
+                        | name         |
+                        | image_url    |
+                        | description  |
+                        | metric       |
+                        | price        |
+                        | organic      |
+                        | stock_date   |
+                        | reviews      |
+                        | store_location |
+                        | subCategoryId|
+                        +--------------+
