@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS ff_consumer;
+CREATE DATABASE ff_consumer;
