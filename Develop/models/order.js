@@ -12,10 +12,14 @@ Order.init(
             autoIncrement: true,
 
         },
-
         user_id: {
-            type: DataTypes.STRING(150),
-            allowNull: false,
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+        model: 'user', 
+        key: 'id'
+        },
+
 
         },
 
