@@ -6,11 +6,17 @@ const Order = require('./order');
 const Product = require('./product');
 
 //product table
-Product.belongsTo(Subcategory);
+Product.belongsTo(Subcategory,
+  {
+    foreignKey: 'subcategory_id'
+  });
 Subcategory.hasMany(Product);
 
 // subcategory
-Subcategory.belongsTo(Category);
+Subcategory.belongsTo(Category,
+  {
+    foreignKey: 'category_id'
+  });
 Category.hasMany(Subcategory);
 
 //user table

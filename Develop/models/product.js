@@ -58,6 +58,13 @@ Product.init(
             allowNull: false,
         },
 
+        subcategory_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'subcategory',
+                key: 'id',
+            },
+        },
     },
     
     {
