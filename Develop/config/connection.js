@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
 const sequelize = new Sequelize(
@@ -11,5 +11,13 @@ const sequelize = new Sequelize(
         port: 3306,
     }
 );
+
+sequelize.authenticate()
+.then(() => {
+    console.log('Database connection successful');
+})
+.catch((error) => {
+    console.error('Unable to connect to the database:', error);
+});
 
 module.exports = sequelize;
