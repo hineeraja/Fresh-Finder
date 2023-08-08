@@ -1,4 +1,4 @@
-const User = require("../models/users");
+const User = require("../models/user.js");
 const createUser = async (userData) => {
   try {
     const newUser = await User.create(userData);
@@ -36,3 +36,4 @@ module.exports = {
   updateUser,
   deleteUser,
 };
+
