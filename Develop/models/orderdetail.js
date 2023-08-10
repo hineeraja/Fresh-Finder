@@ -35,4 +35,4 @@ Orderdetail.init(
     }
 );
 
-module.exports = Collection;
+module.exports = Orderdetail;
