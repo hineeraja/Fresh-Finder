@@ -7,7 +7,7 @@ router.get('/categories', async (req, res) => {
         const categoryData = await Category.findAll({
             include: [Subcategory, Product]
         });
-        res.render('category', category);
+        res.status(200).json(categoryData);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -18,7 +18,12 @@ router.get('/categories/:id', async(req, res) => {
         const categoryData = await Category.findByPk(req.params.id, {
             include: [Subcategory, Product]
         });
-        res.render('category', category);
+
+        if (!categoryData) {
+            res.status(404).json({ message: 'No category found with this id.'} );
+            return;
+        }
+        res.status(200).json(categoryData);
     } catch (err) {
         res.status(500).json(err);
     }
