@@ -1,7 +1,11 @@
 const router = require('express').Router();
 
 router.get('/', async (req, res) => {
-    res.render('homepage');
+    try {
+        res.render('homepage');
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
