@@ -2,7 +2,9 @@ const Subcategory = require('./subcategory');
 const Category = require('./category');
 const User = require('./user');
 const Order = require('./order');
+const Orderdetail = require('./orderdetail');
 const Product = require('./product');
+const Collection = require('./collection');
 
 //product table
 Product.belongsTo(Subcategory,
