@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Subcategory, Product } = require('../models');
 const Category = require('../models/category');
 
-router.get('/categories', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const categoryData = await Category.findAll({
             include: [Subcategory, Product]
@@ -13,7 +13,7 @@ router.get('/categories', async (req, res) => {
     }
 });
 
-router.get('/categories/:id', async(req, res) => {
+router.get('/:id', async(req, res) => {
     try {
         const categoryData = await Category.findByPk(req.params.id, {
             include: [Subcategory, Product]
