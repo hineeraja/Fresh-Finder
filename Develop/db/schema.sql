@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS ff_consumer;
-CREATE DATABASE ff_consumer;
+DROP DATABASE IF EXISTS FreshFinder_db;
+CREATE DATABASE FreshFinder_db;
