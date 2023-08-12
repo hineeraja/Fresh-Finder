@@ -1,29 +1,42 @@
-module.exports = (sequelize, DataTypes) => {
-  const Order = sequelize.define(
-    'orders',
-    {
-      shipping_cost: {
-        type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
-      },
-      order_total: {
-        type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
-      }
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+class Order extends Model {}
+
+Order.init(
+  {
+
+    order_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
     },
-    {
-      freezeTableName: true
+    customer_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    order_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    total_amount: {
+      type: DataTypes.FLOAT,
+      allowNull: false
     }
-  )
-  Order.associate = models => {
-    Order.belongsTo(models.User, {
-      foreignKey: { name: 'UserId', allowNull: false },
-      onDelete: 'cascade'
-    })
-    Order.hasMany(models.order_items, {
-      foreignKey: { name: 'orderId', allowNull: false },
-      onDelete: 'cascade'
-    })
+  },
+  {
+    sequelize,
+    timestamps: false,
+    
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'order'
   }
-  return Order
-}
+);
+
+module.exports = Order; 

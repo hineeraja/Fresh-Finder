@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('..config/connection');
+const sequelize = require('../config/connection');
 
 class Subcategory extends Model { }
 
@@ -17,6 +17,14 @@ Subcategory.init(
             type: DataTypes.STRING(150),
             allowNull: false,
 
+        },
+
+        category_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'category',
+                key: 'id',
+            },
         },
 
     },
