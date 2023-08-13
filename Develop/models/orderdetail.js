@@ -1,10 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+class Orderdetail extends Model { }
 
-class Collection extends Model { }
-
-Collection.init(
+Orderdetail.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -14,17 +13,18 @@ Collection.init(
 
         },
 
-        collection_name: {
-            type: DataTypes.STRING(150),
-            allowNull: false,
+        quantity:{ 
+            type: DataTypes.DATE,
+            allowNull: true
 
         },
 
-        collection_image: {
-            type: DataTypes.STRING(150),
+        quantity:{
+            type: DataTypes.DATE,
             allowNull: false,
 
-        },
+        }
+
     },
 
     {
@@ -35,6 +35,4 @@ Collection.init(
     }
 );
 
-
-
-module.exports = Collection;
+module.exports = Orderdetail;

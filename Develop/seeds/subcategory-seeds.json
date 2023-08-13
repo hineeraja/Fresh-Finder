@@ -1,0 +1,26 @@
+[
+    {
+        "subcategory_name": "Apples",
+        "category_id": 1
+    },
+    {
+        "subcategory_name": "Oranges",
+        "category_id": 1
+    },
+    {
+        "subcategory_name": "Potatoes",
+        "category_id": 2
+    },
+    {
+        "subcategory_name": "Onions",
+        "category_id": 2
+    },
+    {
+        "subcategory_name": "Whole Milk",
+        "category_id": 3
+    },
+    {
+        "subcategory_name": "Skim Milk",
+        "category_id": 3
+    }
+]
