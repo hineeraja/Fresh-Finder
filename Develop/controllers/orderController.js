@@ -1,40 +1,61 @@
-const OrderItem = require("../models/order_item.js");
-
-// Create a new order item
-const createOrderItem = async (orderItemData) => {
+const router = require('express').Router();
+const Order = require("../models/orders.js");
+const Product = require("../models/product.js");
+router.get('/order/:orderId', async (req, res) => {
     try {
-        const newOrderItem = await OrderItem.create(orderItemData);
-        return newOrderItem;
-    } catch (error) {
-        throw new Error("Error creating order item: " + error.message);
-    }
-};
+        const orderId = req.params.orderId;
 
-const updateOrderItem = async (orderItemId, updates) => {
-    try {
-        const [rowsUpdated, [updatedOrderItem]] = await OrderItem.update(updates, {
-            where: { ID: orderItemId },
-            returning: true,
+        const order = await Order.findOne({
+            where: { id: orderId },
+            include: [Product] 
         });
-        return updatedOrderItem;
-    } catch (error) {
-        throw new Error("Error updating order item: " + error.message);
-    }
-};
 
-const deleteOrderItem = async (orderItemId) => {
-    try {
-        const rowsDeleted = await OrderItem.destroy({
-            where: { ID: orderItemId },
-        });
-        return rowsDeleted;
-    } catch (error) {
-        throw new Error("Error deleting order item: " + error.message);
-    }
-};
+        if (!order) {
+            return res.render('order_details', { orders: null });
+        }
 
-module.exports = {
-    createOrderItem,
-    updateOrderItem,
-    deleteOrderItem,
-};
+        return res.render('order_details', { orders: order });
+    } catch (error) {
+        console.error("Error fetching order:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+// Here, you can also define routes for creating, updating, and deleting orders, if needed.
+
+// router.post('/order', async (req, res) => {
+//     try {
+//         const newOrder = await Order.create(req.body);
+//         res.json(newOrder);
+//     } catch (error) {
+//         console.error("Error creating orders item:", error);
+//         res.status(500).send("Internal Server Error");
+//     }
+// });
+
+// router.put('/order/:orderId', async (req, res) => {
+//     try {
+//         const [rowsUpdated, [updatedOrder]] = await Order.update(req.body, {
+//             where: { ID: req.params.orderId },
+//             returning: true,
+//         });
+//         res.json(updatedOrder);
+//     } catch (error) {
+//         console.error("Error updating orders item:", error);
+//         res.status(500).send("Internal Server Error");
+//     }
+// });
+
+// router.delete('/order/:orderId', async (req, res) => {
+//     try {
+//         const rowsDeleted = await Order.destroy({
+//             where: { ID: req.params.orderId },
+//         });
+//         res.json({ deletedRows: rowsDeleted });
+//     } catch (error) {
+//         console.error("Error deleting orders item:", error);
+//         res.status(500).send("Internal Server Error");
+//     }
+// });
+
+module.exports = router;
