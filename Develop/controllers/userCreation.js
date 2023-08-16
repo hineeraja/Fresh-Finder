@@ -10,7 +10,7 @@ const newUser = {
     FirstName: 'John',
     LastName: 'Doe',
     City: 'Example City',
-    Province: 'Example City',
+    Province: 'Example Province',
     EmailVerified: false,
 };
 

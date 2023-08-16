@@ -1,9 +1,9 @@
 
 const { DataTypes } = require("sequelize");
-const db = require("../config/connection.js"); //Replace with real data base.
+const db = require("../config/connection"); //Replace with real data base.
 
 const User = db.define("User", {
-  ID: {
+  Id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
@@ -46,7 +46,7 @@ const User = db.define("User", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
-  createdAt: {
+  CreatedAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
